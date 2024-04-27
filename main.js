@@ -5,6 +5,8 @@ let categoryFilter = document.getElementById("Categories")
 
 let products = []
 
+
+// fatching
 async function fetchProducts(){
   try {
     const response = await fetch('https://fakestoreapi.com/products')
@@ -16,7 +18,7 @@ async function fetchProducts(){
   }
 }
 
-
+// Products Div
 function displayProducts(products) {
   productList.innerHTML = ''
   products.forEach(product => {
@@ -52,12 +54,16 @@ categoryFilter.addEventListener('change', () => {
     displayProducts(filteredProducts);
 })
 
+
+// Search 
 searchInput.addEventListener('input', () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(searchTerm));
     displayProducts(filteredProducts);
 })
 
+
+// Sort 
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value;
   const sortedProducts = [...products].sort((a, b) => sortOrder === 'asc' ? a.price - b.price : b.price - a.price);
